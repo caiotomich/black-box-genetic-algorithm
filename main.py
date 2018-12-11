@@ -31,23 +31,24 @@ limiar_cruzamento = 0.80
 limiar_mutacao = 0.005
 limiar_selecao = 0.50
 
+# gera população inicial
 populacao = pop.populacao(N_POPULACAO, N_CROMOSSOMOS, N_GENES).new_pop()
 
 x = 1
-print(x, end='\r')
 while True:
-    # cruzamento/mutacao
+    # cruzamento/mutação
     pop_cruzamento = crz.cruzamento(populacao, tipo_cruzamento, limiar_cruzamento, tipo_mutacao, limiar_mutacao).init()
 
-    # calcula_fitness
+    # calcula fitness
     pop_fitness = fit.fitness(pop_cruzamento).calc()
 
     # seleção
     populacao = sel.selecao(pop_fitness, N_POPULACAO, limiar_selecao).selecao(tipo_selecao)
 
-    # captura fitness da população
+    # captura fitness da população atual
     global_fitness = fit.fitness(populacao).get_global()
 
+    # salva dados de fitness de todas as gerações
     fitness.append(global_fitness['fitness'])
     max_fitness.append(global_fitness['max'])
     min_fitness.append(global_fitness['min'])
@@ -70,11 +71,10 @@ print("Método de cruzamento", tipo_cruzamento, "com probabilidade de", limiar_c
 print("Método de mutação", tipo_mutacao, "com probabilidade de", limiar_mutacao * 100, "%")
 print("Método de seleção por ", tipo_selecao, "com probabilidade de", limiar_selecao * 100, "%\n")
 
-print("Resultados: \n")
-
-print("Maior Fitness: ", sorted(max_fitness, reverse=True), "\n")
-print("Menor Fitness: ", sorted(min_fitness, reverse=True), "\n")
-print("Média Fitness: ", sorted(med_fitness, reverse=True), "\n")
+print("Resultados:")
+print("Maior Fitness: ", sorted(max_fitness, reverse=True))
+print("Menor Fitness: ", sorted(min_fitness, reverse=True))
+print("Média Fitness: ", sorted(med_fitness, reverse=True))
 
 print("Fitness Máximo: ", np.max(fitness))
 print("Fitness Mínimo: ", np.min(fitness))
