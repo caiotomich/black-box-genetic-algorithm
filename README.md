@@ -1,6 +1,6 @@
-# genetic_algorithm
+## Algoritmo Genético - Problema da Caixa Preta
 
-Repositório destinado a publicação de trabalho cientifico realizado como trabalho final da disciplina de Otimização do curso de Engenharia de Computação da Faculdade de Ciência e Tecnologia de Montes Claros - FACIT.
+Repositório destinado a publicação de trabalho científico realizado como trabalho final da disciplina de Otimização do curso de Engenharia de Computação da Faculdade de Ciência e Tecnologia de Montes Claros - FACIT.
 
 ### Objetivo
 
