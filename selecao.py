@@ -18,11 +18,13 @@ class selecao:
 
         new_pop = []
         while True:
-            ind_0 = random.randint(0, len_populacao)
-            ind_1 = random.randint(0, len_populacao)
+            x = random.randint(0, len_populacao)
+            y = 0
+            while x == y or y == 0:
+                y = random.randint(0, len_populacao)
 
-            individuo_0 = self.populacao[ind_0]
-            individuo_1 = self.populacao[ind_1]
+            individuo_0 = self.populacao[x]
+            individuo_1 = self.populacao[y]
 
             if individuo_0[36] > individuo_1[36]:
                 new_pop.append(individuo_0)
