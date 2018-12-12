@@ -28,22 +28,25 @@ tipo_mutacao = (['bit_a_bit', 'random_bit'])[1]
 tipo_selecao = (['torneio', 'roleta'])[0]
 
 limiar_cruzamento = 0.80
-limiar_mutacao = 0.005
+limiar_mutacao = 0.015
 limiar_selecao = 0.50
 
 # gera população inicial
-populacao = pop.populacao(N_POPULACAO, N_CROMOSSOMOS, N_GENES).new_pop()
+populacao_inicial = pop.populacao(N_POPULACAO, N_CROMOSSOMOS, N_GENES).new_pop()
+
+# calcula fitness
+pop_fitness = fit.fitness(populacao_inicial).calc()
 
 x = 1
 while True:
+    # seleção
+    populacao = sel.selecao(pop_fitness, N_POPULACAO, limiar_selecao).selecao(tipo_selecao)
+
     # cruzamento/mutação
     pop_cruzamento = crz.cruzamento(populacao, tipo_cruzamento, limiar_cruzamento, tipo_mutacao, limiar_mutacao).init()
 
     # calcula fitness
     pop_fitness = fit.fitness(pop_cruzamento).calc()
-
-    # seleção
-    populacao = sel.selecao(pop_fitness, N_POPULACAO, limiar_selecao).selecao(tipo_selecao)
 
     # captura fitness da população atual
     global_fitness = fit.fitness(populacao).get_global()
@@ -55,7 +58,7 @@ while True:
     med_fitness.append(global_fitness['med'])
 
     # critérios de parada
-    if x == N_GERACOES or max_fitness[-1] == 27:
+    if x == N_GERACOES: #or max_fitness[-1] == 27:
         break
 
     x = x + 1
@@ -82,3 +85,5 @@ print("Fitness Médio: ", np.mean(fitness))
 print("Desvio Padrão: ", np.std(fitness), "\n")
 
 print("Número de Gerações: ", x)
+
+print(fitness)

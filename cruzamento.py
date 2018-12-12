@@ -27,8 +27,8 @@ class cruzamento:
             # probabilidade de cruzamento
             limiar_rand = round(random.random(), 2)
             if limiar_rand <= self.limiar_cruzamento:
-                # ponto_de_corte = random.randint(0, 36) # performance ruim!
-                ponto_de_corte = 18 # corte fixo, melhor performance
+                ponto_de_corte = random.randint(0, 36) # performance ruim!
+                #ponto_de_corte = 18 # corte fixo, melhor performance
                 filho_0 = np.concatenate((individuo_1[ponto_de_corte:36], individuo_0[:ponto_de_corte]), axis=None)
                 filho_1 = np.concatenate((individuo_0[ponto_de_corte:36], individuo_1[:ponto_de_corte]), axis=None)
 
